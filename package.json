@@ -1,0 +1,26 @@
+{
+  "name": "node-express-handlebars",
+  "version": "1.0.0",
+  "description": "",
+  "main": "orm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.comnatashagils/Node-Express-Handlebars.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/natashagils/Node-Express-Handlebars/issues"
+  },
+  "homepage": "https://github.com/natashagils/Node-Express-Handlebars#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "node": "^14.3.0",
+    "sequelize": "^5.21.11"
+  }
+}
