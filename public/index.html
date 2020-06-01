@@ -60,7 +60,7 @@
                 myBurgerList.forEach( function(burger){
                     $('#listBurgersToDevour').append(`
                     <div class="input-group mb-3 " id="${burger.id}">
-                        <li class="list-group-item form-control d-flex justify-content-between"><img src="assets/burger.png" alt="" style="width: 25px;">${burger.burger_name}</li>
+                        <li class="list-group-item form-control d-flex justify-content-between"><img src="burger.png" alt="" style="width: 25px;">${burger.burger_name}</li>
                         <div class="input-group-append">
                         <button class="btn btn-success" type="button" onClick="devourBurger(${burger.id})">Devour it!!
                         </button>
@@ -93,7 +93,7 @@
         </script>
         <div class="container">
             <div class="container col">
-                <img src="assets/burger-vector-png-3-transparent.png" class="img-fluid row mx-auto burgerImg" alt="" style="max-width: 200px;">
+                <img src="burger-vector-png-3-transparent.png" class="img-fluid row mx-auto burgerImg" alt="" style="max-width: 200px;">
                 <h1 class="display-4 text-center">Devour Burger</h1>
             </div>
         </div>
