@@ -18,7 +18,7 @@ When trying to connect remotely to your Heroku database on an open network such 
 
 * [Check out this video of the app for a run-through of how it works](https://youtu.be/msvdn95x9OM).
 
-###Screen Shots 
+### Screen Shots 
 
 <img width="1102" alt="Screen Shot 2020-05-31 at 7 54 01 PM" src="https://user-images.githubusercontent.com/56641651/83366107-f03ba600-a37a-11ea-8933-d25cc5cc7b8e.png">
 
