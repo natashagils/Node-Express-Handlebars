@@ -17,3 +17,11 @@ When trying to connect remotely to your Heroku database on an open network such 
 * Your app will store every burger in a database, whether devoured or not.
 
 * [Check out this video of the app for a run-through of how it works](https://youtu.be/msvdn95x9OM).
+
+###Screen Shots 
+
+<img width="1102" alt="Screen Shot 2020-05-31 at 7 54 01 PM" src="https://user-images.githubusercontent.com/56641651/83366107-f03ba600-a37a-11ea-8933-d25cc5cc7b8e.png">
+
+
+<img width="1027" alt="Screen Shot 2020-05-31 at 7 51 38 PM" src="https://user-images.githubusercontent.com/56641651/83366108-f16cd300-a37a-11ea-830f-2584f8abb5e2.png">
+
