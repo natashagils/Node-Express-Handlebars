@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <style>
+            body {
+                background-color: #ecb349;
+            }
+            .burgerImg {
+                filter: drop-shadow(5px 8px 6px rgb(122, 36, 21));
+            }
+            .box1 {
+                width: 100%;
+                /* background-color: darkolivegreen; */
+            }
+            .box2 {
+                padding: 10px;
+            }
+            .mainSection{
+                height: 150vh;
+            }
+            .list-group-item.disabled{
+                background-color: rgb(221, 221, 221);
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            $(document).ready( async function(){
+                const devouredBurger = await $.get( '/api/devouredBurger');
+                $('#devouredBurgers').html("");
+                $('#new_div').appendTo('#original_div').show('slow');
+                
+                devouredBurger.forEach( function(burger){
+                    $('#devouredBurgers').append(`
+                        <div class="input-group mb-3">
+                            <li class="list-group-item disabled col">${burger.burger_name}</li>
+                        </div>
+                        `)
+                    })
+            $('#submitBtn').click( async function(event){
+                event.preventDefault();
+                
+                // build our save object
+                const myBurger = {
+                    burger_name: $('#burgerInput').val(),
+                    devoured: 0
+                };
+                // console.log(myBurger);
+                const apiResult = await $.post( '/api/burger', myBurger );
+                $('#burgerInput').val('')
+                const myBurgerList = await $.get( '/api/burger');
+                // alert( apiResult.message );
+                $('#listBurgersToDevour').html("")
+                myBurgerList.forEach( function(burger){
+                    $('#listBurgersToDevour').append(`
+                    <div class="input-group mb-3 " id="${burger.id}">
+                        <li class="list-group-item form-control d-flex justify-content-between"><img src="assets/burger.png" alt="" style="width: 25px;">${burger.burger_name}</li>
+                        <div class="input-group-append">
+                        <button class="btn btn-success" type="button" onClick="devourBurger(${burger.id})">Devour it!!
+                        </button>
+                        </div>
+                    </div>
+                    `)
+                })
+            })
+            
+        })
+        async function devourBurger(devourIdx){
+            console.log(devourIdx);
+            const apiResult = await $.ajax({
+            url: `/api/burgerUpdate/${devourIdx}`,
+            type: 'PUT'
+        });
+        const devouredBurger = await $.get( '/api/devouredBurger');
+        $('#devouredBurgers').html("");
+        $('#new_div').appendTo('#original_div').show('slow');
+        
+        devouredBurger.forEach( function(burger){
+            $('#devouredBurgers').append(`
+                <div class="input-group mb-3">
+                    <li class="list-group-item disabled col">${burger.burger_name}</li>
+                </div>
+                `)
+            })
+            $(`#${devourIdx}`).fadeOut(500, function(){ $(this).remove();});
+        }
+        </script>
+        <div class="container">
+            <div class="container col">
+                <img src="assets/burger-vector-png-3-transparent.png" class="img-fluid row mx-auto burgerImg" alt="" style="max-width: 200px;">
+                <h1 class="display-4 text-center">Devour Burger</h1>
+            </div>
+        </div>
+        <div class="container mainSection">
+            <div class="col-lg-6 mx-auto text-center box2">
+                <div  class="input-group mb-3 text-center" >
+                    <input type="text" id="burgerInput" class="col form-control centreBtn text-center" placeholder="Add burger">
+                </div>
+                <div  class="input-group mb-3">
+                    <input type="submit" id="submitBtn" class="col form-control centreBtn btn btn-outline-secondary ">
+                </div>                
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-5 text-center box1" id="listBurgersToDevour">
+                </div>
+                <div class="col-lg-5 text-center box1" id="devouredBurgers">
+                    <ul class="list-group" id="devouredBurgers"></ul>
+                </div>
+
+            </div>
+        </div>
+    </body>
+</html>
